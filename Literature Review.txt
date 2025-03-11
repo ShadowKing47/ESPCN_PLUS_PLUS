@@ -1,0 +1,67 @@
+Sparse Coding
+
+The paper discusses how the brain's primary visual cortex (V1) may use sparse coding with extra "basis functions" to represent natural images.
+
+Builds on Barlow's idea that the brain reduces redundancy in processing information.
+
+Proposes representing images as a sparse mix of basis functions (patterns), with only a few chosen from a large group, rather than applying simple rules.
+
+Describes a model that learns the best basis functions by minimizing reconstruction error and encouraging sparse representations.
+
+The learning process is inspired by how neurons in the brain work together.
+
+SRCNN
+
+Examines the Super-Resolution Convolutional Neural Network (SRCNN) for reconstructing degraded images using BRISQUE, SSIM, and PSNR metrics.
+
+SRCNN was chosen for its success in previous studies and its relevance to super-resolution tasks.
+
+Initialized with weights from the ILSVRC 2013 ImageNet dataset, evaluated using the Set 5 and Set 14 datasets.
+BRISQUE (no-reference metric) measures image naturalness, with lower values indicating less distortion.
+
+SSIM and PSNR are full-reference metrics for statistical similarity and pixel-to-noise ratio, respectively.
+Compared incremental upsampling (two 2x operations) with single-shot scaling (one 4x operation).
+
+Found that SRCNN improved BRISQUE scores, especially for images with bicubic interpolation or compression artifacts.
+
+Multiple correction passes showed minimal benefit, and increased scaling factors reduced SRCNN’s effectiveness.
+
+EDSR
+
+This paper presents the Enhanced Deep Super-Resolution Network (EDSR) and Multi-scale Deep Super-Resolution Network (MDSR) for improving single-image super-resolution (SISR) with deep convolutional networks.
+
+The authors address limitations of existing SR algorithms by optimising the SRResNet architecture, removing unnecessary modules, and using pre-trained low-scale models for high-scale training.
+
+Key improvements include removing batch normalization from residual blocks and using residual scaling (0.1) for stability, while the EDSR model increases layers and feature channels.
+
+The MDSR model shares parameters across scales, reducing the number of parameters by using scale-specific modules for each update.
+
+The models use L1 loss for better convergence and are evaluated on datasets like DIV2K and Set5, with improvements in PSNR and SSIM over existing methods.
+
+SRGAN
+
+This paper presents a super-resolution algorithm based on SRGAN, enhanced with a channel attention mechanism and modified loss function to improve image detail and reduce artifacts.
+
+A channel attention (Ca) module is added to better capture high-frequency features, increasing network depth and focusing on important channels.
+
+The generator includes residual modules with attention blocks, while the discriminator uses convolution layers, leaky ReLU, and batch normalization.
+
+The batch normalization layer is removed to reduce complexity and prevent artifacts.
+
+The loss function uses L1 loss instead of MSE to reduce noise impact, along with a total variation loss term for smoothness.
+
+Trained on Voc2012 and tested on Set5, Set14, Urban100, and BSD100, the model achieves higher PSNR and SSIM than existing methods, with fewer parameters and better high-frequency detail restoration.
+
+ESPCN
+
+This paper introduces the Efficient Sub-Pixel Convolutional Neural Network (ESPCN) for real-time single image and video super-resolution, focusing on computational efficiency.
+
+The key innovation is the sub-pixel convolution layer, which directly upscales LR feature maps to HR outputs in one step, reducing computational complexity.
+
+The ESPCN operates in the LR space, using multiple upscaling filters for each feature map, allowing more complex LR-to-HR mappings.
+
+The architecture includes convolutional layers for feature extraction and a sub-pixel convolution layer with a periodic shuffling operator for upscaling.
+
+Trained with mean squared error (MSE), the model uses datasets like Timofte, Berkeley, and ImageNet, and Xiph and Ultra Video Group for video.
+
+ESPCN outperforms previous methods in speed and performance, enabling real-time 1080p video SR on a single K2 GPU.
